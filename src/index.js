@@ -10,10 +10,10 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 const db = mySql.createConnection({
-  host: "localhost",
+  host: "",
   password: "",
-  user: "root",
-  database: "contactapi",
+  user: "",
+  database: "",
 });
 
 db.connect((err)=>{
