@@ -4,16 +4,17 @@ const bodyparser = require("body-parser");
 const cors = require("cors");
 const mySql = require("mysql2");
 const port = process.env.PORT || 5000;
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 const db = mySql.createConnection({
-  host: "sql6.freesqldatabase.com",
-  database: "sql6634029",
-  user: "sql6634029",
-  password: "8HQ1Pzb5ED",
+  host: process.env.HOST,
+  database: process.env.DB_NAME,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
 });
 
 db.connect((err) => {
