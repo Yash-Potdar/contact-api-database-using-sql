@@ -11,6 +11,7 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 const db = mySql.createConnection({
+  uri:process.env.URI,
   host: process.env.HOST,
   database: process.env.DB_NAME,
   user: process.env.USER,
