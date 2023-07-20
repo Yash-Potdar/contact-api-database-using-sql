@@ -10,11 +10,10 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 const db = mySql.createConnection({
-  uri: "mysql://uaz8cqdth0qm4roi:RpQBSq1QejFiI6kVpbrh@b4rcnw5zgmyhrkvmux5y-mysql.services.clever-cloud.com:3306/b4rcnw5zgmyhrkvmux5y",
-  host: "b4rcnw5zgmyhrkvmux5y-mysql.services.clever-cloud.com",
-  password: "uaz8cqdth0qm4roi",
-  user: "uaz8cqdth0qm4roi",
-  database: "b4rcnw5zgmyhrkvmux5y",
+  host: "sql6.freesqldatabase.com",
+  database: "sql6634029",
+  user: "sql6634029",
+  password: "8HQ1Pzb5ED",
 });
 
 db.connect((err) => {
