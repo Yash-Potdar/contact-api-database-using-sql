@@ -2,29 +2,16 @@ const express = require("express");
 const app = express();
 const bodyparser = require("body-parser");
 const cors = require("cors");
-const mySql = require("mysql2");
 const port = process.env.PORT || 5000;
 const dotenv =  require("dotenv");
 dotenv.config();
+const db = require("./connection")
 
 app.use(cors());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-const db = mySql.createConnection({
-  host: "sql6.freesqldatabase.com",
-  database: "sql6634029",
-  user: "sql6634029",
-  password: "8HQ1Pzb5ED"
-});
 
-db.connect((err) => {
-  if (err) {
-    console.log("Connection failed");
-  } else {
-    console.log("Connection Successful");
-  }
-});
 
 app.get("/getContact", (req, res) => {
   const getContact = "SELECT * FROM api";
@@ -73,7 +60,7 @@ app.patch("/updateContact/:_id", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`The server is live on ${port}`);
+  console.log(`The server is live on ${process.env.HOST}`);
 });
 
 // const sqlInsert = "INSERT INTO api(firstName,lastName,phoneNumber) VALUES ('john','doe',1234567890)"
