@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-const db = mySql.createConnection({
+const db = mySql.createPool({
   host: "sql6.freesqldatabase.com",
   database: "sql6634029",
   user: "sql6634029",
