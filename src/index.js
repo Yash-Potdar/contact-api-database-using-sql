@@ -11,7 +11,6 @@ app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 const db = mySql.createConnection({
-  uri:process.env.URI,
   host: process.env.HOST,
   database: process.env.DB_NAME,
   user: process.env.USER,
@@ -27,7 +26,7 @@ db.connect((err) => {
 });
 
 app.get("/getContact", (req, res) => {
-  const getContact = "SELECT * FROM contactapi.api";
+  const getContact = "SELECT * FROM api";
   db.query(getContact, (e, result) => {
     res.send(result);
   });
@@ -36,7 +35,7 @@ app.get("/getContact", (req, res) => {
 app.post("/addContact", (req, res) => {
   const { firstName, lastName, phoneNumber } = req.body;
   const sqlInsert =
-    "INSERT INTO contactapi.api(firstName,lastName,phoneNumber) VALUES (?,?,?)";
+    "INSERT INTO api(firstName,lastName,phoneNumber) VALUES (?,?,?)";
   db.query(sqlInsert, [firstName, lastName, phoneNumber], (err, result) => {
     res.send(result);
   });
@@ -44,7 +43,7 @@ app.post("/addContact", (req, res) => {
 
 app.delete("/deleteContact/:_id", (req, res) => {
   const { _id } = req.params;
-  const sqlDelete = "DELETE FROM contactapi.api WHERE _id=?";
+  const sqlDelete = "DELETE FROM api WHERE _id=?";
   db.query(sqlDelete, _id, (err, result) => {
     res.send(result);
   });
@@ -52,7 +51,7 @@ app.delete("/deleteContact/:_id", (req, res) => {
 
 app.get("/getSingleContact/:_id", (req, res) => {
   const { _id } = req.params;
-  const sqlgetSingleContact = "SELECT * FROM contactapi.api WHERE _id=?";
+  const sqlgetSingleContact = "SELECT * FROM api WHERE _id=?";
   db.query(sqlgetSingleContact, _id, (err, result) => {
     res.send(result);
   });
@@ -62,7 +61,7 @@ app.patch("/updateContact/:_id", (req, res) => {
   const { _id } = req.params;
   const { firstName, lastName, phoneNumber } = req.body;
   const sqlupdateContact =
-    "UPDATE contactapi.api SET firstName=? , lastName=?,phoneNumber=? WHERE _id=?";
+    "UPDATE api SET firstName=? , lastName=?,phoneNumber=? WHERE _id=?";
   db.query(
     sqlupdateContact,
     [firstName, lastName, phoneNumber, _id],
