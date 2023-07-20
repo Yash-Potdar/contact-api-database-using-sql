@@ -4,7 +4,8 @@ const bodyparser = require("body-parser");
 const cors = require("cors");
 const mySql = require("mysql2");
 const port = process.env.PORT || 5000;
-require("dotenv").config();
+const dotenv =  require("dotenv");
+dotenv.config();
 
 app.use(cors());
 app.use(express.json());
